@@ -63,7 +63,7 @@ function UIHelpers.ApplyGlass(frame, opts)
     -- Inner subtle stroke for neumorphism
     local innerStroke = Instance.new("UIStroke")
     innerStroke.Name = "Krill_StrokeInner"
-    innerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Inner
+    innerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
     innerStroke.LineJoinMode = Enum.LineJoinMode.Round
     innerStroke.Transparency = opts.InnerStrokeTransparency or 0.85
     innerStroke.Thickness = opts.InnerStrokeThickness or 1
@@ -128,4 +128,5 @@ function UIHelpers.HoverEffect(inst, enterProps, leaveProps)
 end
 
 return UIHelpers
+
 
