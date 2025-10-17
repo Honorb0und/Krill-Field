@@ -1,9 +1,13 @@
 -- Utils/UIHelpers.lua
 -- Helper utilities for creating stylized UI elements: acrylic panels, strokes, corners, noise etc.
 local UIHelpers = {}
-
 local RunService = game:GetService("RunService")
-local Tween = require(script:FindFirstChild("Tween") or script) -- fallback; real loader uses separate module
+
+-- This is safe: main KrillField loader will inject a Tween utility if available
+local Tween = nil
+if getfenv and getfenv(2) and getfenv(2).Library and getfenv(2).Library.Utils then
+	Tween = getfenv(2).Library.Utils.Tween
+end
 
 -- Utility: create UICorner with specified radius
 function UIHelpers.CreateCorner(parent, radius)
@@ -124,3 +128,4 @@ function UIHelpers.HoverEffect(inst, enterProps, leaveProps)
 end
 
 return UIHelpers
+
