@@ -23,16 +23,17 @@ function UIHelpers.CreateNoise(parent, imageId, tile)
     local img = Instance.new("ImageLabel")
     img.Name = "Krill_Noise"
     img.Image = imageId or "rbxassetid://1665395372"
-    img.Size = UDim2.new(1.5, 0, 1.5, 0) -- slightly larger for parallax
+    img.Size = UDim2.new(1.5, 0, 1.5, 0)
     img.Position = UDim2.new(-0.25, 0, -0.25, 0)
     img.BackgroundTransparency = 1
     img.ImageTransparency = 0.9
     img.ScaleType = Enum.ScaleType.Tile
-    img.TileSize = Vector2.new(64, 64)
+    img.TileSize = UDim2.new(0, 64, 0, 64) 
     img.ZIndex = parent.ZIndex - 1
     img.Parent = parent
     return img
 end
+
 
 -- Utility: apply glass base (background + gradient + strokes)
 function UIHelpers.ApplyGlass(frame, opts)
@@ -128,5 +129,6 @@ function UIHelpers.HoverEffect(inst, enterProps, leaveProps)
 end
 
 return UIHelpers
+
 
 
