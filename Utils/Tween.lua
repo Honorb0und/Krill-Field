@@ -14,17 +14,24 @@ function Tween.Play(instance, props, info)
         warn("[KrillField.Tween] invalid arguments to Play")
         return nil
     end
+    
+    if not instance.Parent then
+        warn("[KrillField.Tween] Tried to tween object without parent:", instance.Name or instance.ClassName)
+        return nil
+    end
+
     info = info or Tween.DefaultInfo
     local ok, tw = pcall(function()
         return TweenService:Create(instance, info, props)
     end)
     if not ok or not tw then
         warn("[KrillField.Tween] failed to create tween; fallback to instant set")
-        for k,v in pairs(props) do
+        for k, v in pairs(props) do
             pcall(function() instance[k] = v end)
         end
         return nil
     end
+
     local played = pcall(function() tw:Play() end)
     if not played then
         warn("[KrillField.Tween] failed to Play tween")
@@ -66,3 +73,4 @@ return {
     Wait = Tween.WaitForComplete,
     DefaultInfo = Tween.DefaultInfo
 }
+
